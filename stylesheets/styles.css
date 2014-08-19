@@ -1,0 +1,84 @@
+*{
+	margin:0;
+	padding:0;
+}
+body{
+	background-color:#A4A6A8;
+}
+#wrapper{
+	width:75%;
+	text-align:center;
+	background-color:#5486A8;
+	margin: 0 auto;
+}
+header{
+	color:#A4A6A8;
+	margin-bottom:5px;
+	position:relative;
+}
+header div{
+	display:inline;
+	position:absolute;
+	top:5px;
+	right:30px;
+	font-size:20px;
+}
+a{
+	text-decoration: none;
+}
+#thumbs-up{
+	color:#0F0;
+}
+#thumbs-down{
+	color:#F00;
+}
+#album #rate{
+	height:25px;
+	width:100%;
+	position:absolute;
+	bottom:0;
+	display:block;
+	color:#FFF;
+	background-color: #000;
+	opacity: 0;
+}
+#album #title{
+    height:25px;
+    width:100%;
+    position:absolute;
+    top:0;
+    color:#FFF;
+    background-color: #000;
+    display:block;
+    opacity: 0;
+}
+#album:hover #rate, #album:hover #title{
+	display:block;
+	opacity: 0.5;
+	-webkit-transition: opacity 1s;
+}
+#album{
+	width:20%;
+	margin:10px;
+	height:135px;
+	display:inline-block;
+	border: 2px groove #A4A6A8;
+	background-color:#A4A6A8;
+	background-size: cover;
+	position:relative;
+}
+#top-ranked #album{
+	background-image: url('../images/car4.jpg');
+}
+#regular #album{
+	background-image: url('../images/car6.jpg');
+}
+main{
+	margin-bottom:10px;
+}
+section{
+	width:90%;
+	border: 2px groove #A4A6A8;
+	margin: 0 auto 20px auto;
+	padding:20px;
+}
