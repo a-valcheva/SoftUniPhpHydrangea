@@ -78,29 +78,7 @@ enctype="multipart/form-data">
 	
 </style>
 
-<script>
-var next = 0;
-	function add() {
-		<?php
-		foreach ($photos as $key => $value) { ?>
-			var node=document.createElement('div');
-			node.setAttribute('class','photo');
-			var textnode=document.createTextNode('Water');
-			node.appendChild(textnode);
-			document.getElementById('photos').appendChild(node);
-		<?php
-		}
-		?>
-		next++;
-		var node=document.createElement('div');
-		node.setAttribute('class','photo');
-		node.setAttribute('id','num' + next);
-		var textnode=document.createTextNode('Water');
-		node.appendChild(textnode);
-		document.getElementById('photos').appendChild(node);
-	}
-	add();
-</script>
+
 
 <?php
 $allowedExts = array("gif", "jpeg", "jpg", "png");
