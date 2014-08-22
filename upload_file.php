@@ -1,4 +1,7 @@
 <html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
 <body>
 <section class="photos" id="photos">
 <h1 class="album">Album Name</h1>
@@ -41,7 +44,23 @@ if ((($_FILES["file"]["type"] == "image/gif")
       move_uploaded_file($_FILES["file"]["tmp_name"],
       "upload/" . $_FILES["file"]["name"]);
       //echo "Stored in: " . "upload/" . $_FILES["file"]["name"];
-    
+      
+      $myfile = fopen("{$_FILES['file']['name']}.html", "w");
+	  $txt = "
+		<html>
+		<head>
+		<link rel='stylesheet' type='text/css' href='style.css'>
+		</head>
+		<body>
+		<section class='photos' id='photos'>
+		<h1 class='album'>{$_FILES['file']['name']}</h1>
+		<img src = 'upload/{$_FILES['file']['name']}'>
+		</section>
+		</body>
+		</html>
+	  ";
+	  fwrite($myfile, $txt);
+	  fclose($myfile);
 	  
 	  array_push($photos, $_FILES["file"]["name"]);
 	  //var_dump($photos);
