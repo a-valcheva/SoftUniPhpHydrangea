@@ -62,5 +62,4 @@ if (!isset($_SESSION['username'])) {
     }
 }
 $_SESSION['sessionid'] = session_id();
-echo $_SESSION['username'];
 ?>
