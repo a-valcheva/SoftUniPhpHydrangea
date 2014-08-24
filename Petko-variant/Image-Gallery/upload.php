@@ -5,11 +5,10 @@
 </form>
 
 <?php
-require("conf.php");
-require("User.php");
+require("login.php");
+
+
 //connect to database
-
-
 $db_connect or die(mysql_error());
 $db_select or die(mysql_error());
 
@@ -20,8 +19,6 @@ if (isset($_FILES['image'])){
     $image = addslashes(file_get_contents($file));
     $image_name = addslashes($_FILES['image']['name']);
     $image_size = getimagesize($file);
-
-    $user = new User();
 
     if ($image_size == false){
         echo "That is not an image!";
