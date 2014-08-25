@@ -45,7 +45,46 @@ if ((($_FILES["file"]["type"] == "image/gif")
       "upload/" . $_FILES["file"]["name"]);
       //echo "Stored in: " . "upload/" . $_FILES["file"]["name"];
       
-      $myfile = fopen("{$_FILES['file']['name']}.html", "w");
+      
+      	
+      
+		$con=mysqli_connect("localhost", "root", "");
+		// Check connection
+		if (mysqli_connect_errno()) {
+		  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		}
+		
+		
+		
+		// Create database
+		$sql="CREATE DATABASE my_db";
+		if (mysqli_query($con,$sql)) {
+		  echo "Database my_db created successfully";
+		} else {
+		  echo "Error creating database: " . mysqli_error($con);
+		}
+      
+		$con=mysqli_connect("localhost", "root", "", "my_db");
+		// Check connection
+		if (mysqli_connect_errno()) {
+		  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		}
+		
+		
+		// Create table
+		$imgName = $_FILES['file']['name'];
+		$imgName = str_replace('.jpg','',$imgName);
+		
+		$sql="CREATE TABLE {$imgName}(id INT,name CHAR(30), comment CHAR(30))";
+		
+		// Execute query
+		if (mysqli_query($con,$sql)) {
+		  echo "Table persons created successfully";
+		} else {
+		  echo "Error creating table: " . mysqli_error($con);
+		}
+      
+      $myfile = fopen("{$_FILES['file']['name']}.php", "w");
 	  $txt = "
 		<html>
 		<head>
@@ -55,6 +94,17 @@ if ((($_FILES["file"]["type"] == "image/gif")
 		<section class='photos' id='photos'>
 		<h1 class='album'>{$_FILES['file']['name']}</h1>
 		<img src = 'upload/{$_FILES['file']['name']}'>
+		</section>
+		<section class='comments'>
+		<?php
+			require ('com.php');
+		?>
+			<form action='' method='post'>
+			<input type='text' name='name' placeholder='Name' />
+			<input type='text' name='comment' placeholder='Write a comment' />
+			<input type='submit' name='submitComment' value='Comment' />
+			</form>
+			
 		</section>
 		</body>
 		</html>
@@ -71,10 +121,47 @@ if ((($_FILES["file"]["type"] == "image/gif")
 	  
 	  if(isset($_POST['submit'])){
 	    if ($nameP) {
+	    	
+		$con=mysqli_connect("localhost", "root", "");
+		// Check connection
+		if (mysqli_connect_errno()) {
+		  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		}
+		
+		
+		
+		// Create database
+		$sql="CREATE DATABASE my_db";
+		if (mysqli_query($con,$sql)) {
+		  echo "Database my_db created successfully";
+		} else {
+		  echo "Error creating database: " . mysqli_error($con);
+		}
+      
+		$con=mysqli_connect("localhost", "root", "", "my_db");
+		// Check connection
+		if (mysqli_connect_errno()) {
+		  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		}
+		
+		
+		// Create table
+		
+		
+		$sql="CREATE TABLE photos(id INT,name CHAR(30))";
+		
+		// Execute query
+		if (mysqli_query($con,$sql)) {
+		  echo "Table persons created successfully";
+		} else {
+		  echo "Error creating table: " . mysqli_error($con);
+		}
+		mysql_connect("localhost", "root", "");
+		mysql_select_db("my_db");
 			$insert = mysql_query("INSERT INTO photos (name) VALUES ('$nameP')");
 			} else {
 			//echo "Please fill out all the fields";
-			  require ('connect.php');
+			  //require ('connect.php');
 			
 	  	}
 	  }
@@ -91,13 +178,17 @@ if ((($_FILES["file"]["type"] == "image/gif")
   
 }
 }
-  require ('connect.php');
+    //require ('connect.php');
+  
+    mysql_connect("localhost", "root", "");
+	mysql_select_db("my_db");
+  
 	$getquery = mysql_query("SELECT * FROM photos ORDER BY id DESC");
-	while ($rows=mysql_fetch_assoc($getquery)) {
+		while ($rows=mysql_fetch_assoc($getquery)) {
 		$idP = $rows['id'];
 		$nameP = $rows['name'];
 		echo "<div class='photo'>
-      <img src = 'upload/$nameP'>
+      <a href='$nameP.php'><img src = 'upload/$nameP'></a>
 	  </div>";
 	}
 ?>
@@ -108,13 +199,55 @@ if ((($_FILES["file"]["type"] == "image/gif")
 <section class="comments">
 	
 <?php
-		require ('connect.php');
+		//require ('connect.php');
+		mysql_connect("localhost", "root", "");
+		//mysql_select_db("comment");
 		if(isset($_POST['name'])){ $name = $_POST['name']; } 
 		if(isset($_POST['comment'])){ $comment = $_POST['comment']; } 
 		if(isset($_POST['submitComment'])){ $submitComment = $_POST['submitComment']; } 
 		
 		if(isset($_POST['submitComment'])){
 			if ($name && $comment) {
+					
+		$con=mysqli_connect("localhost", "root", "");
+		// Check connection
+		if (mysqli_connect_errno()) {
+		  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		}
+		
+		
+		
+		// Create database
+		$sql="CREATE DATABASE my_db";
+		if (mysqli_query($con,$sql)) {
+		  echo "Database my_db created successfully";
+		} else {
+		  echo "Error creating database: " . mysqli_error($con);
+		}
+      
+		$con=mysqli_connect("localhost", "root", "", "my_db");
+		// Check connection
+		if (mysqli_connect_errno()) {
+		  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		}
+		
+		
+		// Create table
+		
+		
+		$sql="CREATE TABLE comment(id INT,name CHAR(30), comment CHAR(30))";
+		
+		// Execute query
+		if (mysqli_query($con,$sql)) {
+		  echo "Table persons created successfully";
+		} else {
+		  echo "Error creating table: " . mysqli_error($con);
+		}
+		mysql_connect("localhost", "root", "");
+		mysql_select_db("my_db");
+						
+			
+		
 				$insert = mysql_query("INSERT INTO comment (name, comment) VALUES ('$name','$comment')");
 			} else {
 				echo "Please fill out all the fields";
@@ -125,6 +258,8 @@ if ((($_FILES["file"]["type"] == "image/gif")
 ?>
 
 <?php
+	mysql_connect("localhost", "root", "");
+	mysql_select_db("my_db");
 	$getquery = mysql_query("SELECT * FROM comment ORDER BY id DESC");
 	while ($rows=mysql_fetch_assoc($getquery)) {
 		$id = $rows['id'];
@@ -136,7 +271,7 @@ if ((($_FILES["file"]["type"] == "image/gif")
 		</div>";
 	}
 ?>
-	<form action="upload_file.php" method="post">
+	<form action="" method="post">
 	<input type="text" name="name" placeholder="Name" />
 	<input type="text" name="comment" placeholder="Write a comment" />
 	<input type="submit" name="submitComment" value="Comment" />

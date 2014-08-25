@@ -1,0 +1,42 @@
+body {
+	background-color: grey;
+
+}
+.album {
+	text-align: center;
+	padding: 10px;
+	margin: 10px;
+}
+.photos, .comments {
+	background-color: white;
+	width: 75%;
+	margin: 10px auto;
+	padding: 10px;
+}
+.photo {
+	margin: 10px;
+	background-color: white;
+	
+	width: 200px;
+	height: 200px;
+	display: inline-block;
+	vertical-align: top;
+}
+.photo form {
+	text-align: center;
+	
+}
+.comment, .comments input {
+	margin: 10px auto;
+	padding: 10px;
+	background-color: white;
+	width: 90%;
+	
+}
+.comments form {
+	text-align: center;
+
+}
+img {
+	max-width: 100%;
+}
