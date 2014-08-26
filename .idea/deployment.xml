@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="XAMPPHW">
+  <component name="PublishConfigData" serverName="XAMPP Apache">
     <serverData>
-      <paths name="XAMPPHW">
+      <paths name="XAMPP Apache">
         <serverdata>
           <mappings>
-            <mapping local="$PROJECT_DIR$" web="SoftUniPhpHydrangea" />
+            <mapping deploy="SoftUniPhpHydrangea" local="$PROJECT_DIR$" web="/SoftUniPhpHydrangea" />
           </mappings>
         </serverdata>
       </paths>
