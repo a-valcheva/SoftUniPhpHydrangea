@@ -1,44 +1,54 @@
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<form enctype="multipart/form-data" action="new_album_page.php" method="POST">
-    Please choose the file/-s you want to upload: <br>
-
-    <div id="parent">
-        <div id="album1">
-            <input type="file" name="albums[]"> <a href="javascript:removeElement('album1')">[Remove]</a><br>
-        </div>
-        <script>addInput();</script>
-    </div>
-    <a href="javascript:addInput()">[Add]</a><br/>
-    <input type="submit" name="submit" value="Upload"/>
+<section class="photos" id="photos">
+<h1 class="album">Album</h1>
+<div class="photo" class="upload">
+<form action="" method="post"
+enctype="multipart/form-data">
+<label class="text" for="text">Album:</label>
+<input type="text" name="text" />
+<input type="submit" name="submit" value="Create">
 </form>
-<script>
-    var nextId = 0;
-
-    function addInput() {
-        nextId++;
-        var inputDiv = document.createElement("div");
-        inputDiv.setAttribute("id", "album" + nextId);
-        inputDiv.innerHTML =
-            "<input type='file' name='albums[]' /> " +
-                "<a href=\"javascript:removeElement('album" + nextId + "')\">[Remove]</a>" + "<br/>";
-        document.getElementById('parent').appendChild(inputDiv);
-    }
-
-    function removeElement(id) {
-        var inputDiv = document.getElementById(id);
-        document.getElementById('parent').removeChild(inputDiv);
-    }
-</script>
+</div>
+<?php
+if (isset($_GET["text"])) {
+	echo "
+		<table border='1'>	
+	";
+	$text = $_GET["text"];
+	var_dump($text);
+	$text = explode(", ", $text);
+	for ($i=0; $i < sizeof($text); $i++) { 
+		if (is_int((int)$text[$i])) {
+			echo "<tr><td> $text[$i] </td>";
+			$len = strlen((string)$text[$i]);
+			$sum = 0;
+			for ($j=0; $j < $len; $j++) {
+				$sum = $sum +  (int)$text[$i] % 10;
+				$text[$i] = (int)$text[$i] / 10;
+			}
+			if ($sum == 0) {
+				echo "<td>I cannot sum that </td>
+			</tr>";
+			} else {
+				echo "
+			<td> $sum </td>
+			</tr>
+			";
+			}
+		}
+	}
+}
+?>
+</section>
 </body>
 </html>
-<?php
-$sessionid = session_id();
-if ($sessionid == '') session_start();
-$_SESSION['filename'] = "file_name";
-$_SESSION['album_created'] = false;
-session_regenerate_id(true);
-$_SESSION['sessionid'] = session_id();
-?>
+
+
+
+
+
+
