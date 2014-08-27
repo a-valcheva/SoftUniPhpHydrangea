@@ -1,0 +1,88 @@
+body {
+	background-color: #f1f1f1;
+}
+
+.album {
+	text-align: center;
+	padding: 10px;
+	margin: 10px;
+}
+.photos, .comments {
+	
+-webkit-box-shadow: rgb(230, 230, 230) 1px 0px 0px 0px;
+background-color: rgb(255, 255, 255);
+border-bottom-color: rgb(196, 196, 196);
+border-bottom-left-radius: 5px;
+border-bottom-right-radius: 5px;
+border-bottom-style: solid;
+border-bottom-width: 1px;
+border-left-color: rgb(210, 210, 210);
+border-left-style: solid;
+border-left-width: 1px;
+border-right-color: rgb(210, 210, 210);
+border-right-style: solid;
+border-right-width: 1px;
+border-top-color: rgb(232, 232, 232);
+border-top-left-radius: 5px;
+border-top-right-radius: 5px;
+border-top-style: solid;
+border-top-width: 1px;
+box-shadow: rgb(230, 230, 230) 1px 0px 0px 0px;
+clear: both;
+display: block;
+font-family: 'Lucida Grande', Helvetica, Arial, Verdana, sans-serif;
+margin-bottom: 25px;
+margin-left: 229px;
+margin-right: 229px;
+margin-top: 25px;
+padding-bottom: 5px;
+padding-left: 5px;
+padding-right: 5px;
+padding-top: 5px;
+width: 980px;
+vertical-align: bottom;
+}
+.photo {
+	margin: 0 9px;
+	background-color: white;
+	//border: 1px solid black;
+	text-align: center;
+	//vertical-align: central;
+	width: 225px;
+	height: 175px;
+	display: inline-block;
+	vertical-align: bottom;
+	//padding-top: 50px;
+	
+	
+	
+}
+
+.photo a {
+	font-size: 21px;
+	
+	//vertical-align: central;
+}
+
+.photo form {
+	text-align: center;
+	
+}
+.comment, .comments input {
+	margin: 10px auto;
+	padding: 10px;
+	background-color: white;
+	width: 90%;
+	
+}
+.comments form {
+	text-align: center;
+
+}
+img {
+	max-width: 100%;
+}
+a {
+	text-decoration: none;
+	color: black;
+}
